@@ -1,0 +1,27 @@
+{
+  "title": "{{{title}}}{{#year}} ({{{year}}}){{/year}}",
+  "url": "{{{url}}}",
+  "description": "{{#synopsis}}{{{synopsis}}}{{/synopsis}}",
+  "color": 16711935,
+  "thumbnail": {
+    "url": "{{#posterUrl}}{{{posterUrl}}}{{/posterUrl}}"
+  },
+  "fields": [
+    {
+      "name": "{{#rating}}<:star_rating:1490292990768320512> {{{rating}}}/5 ({{#ratingCount}}{{{ratingCountFormatted}}}{{/ratingCount}}{{^ratingCount}}0{{/ratingCount}} votes){{/rating}}{{^rating}}N/A{{/rating}}",
+      "value": "{{#genres}}`{{{genres}}}`{{/genres}} {{#releaseDate}} • `{{{releaseDate}}}`{{/releaseDate}} {{#runtime}} • `{{{runtime}}}`{{/runtime}} • {{#country}}`{{{country}}}`{{/country}}",
+      "inline": false
+    },
+    {{#director}}
+    {
+      "name": "Director",
+      "value": "{{{director}}}",
+      "inline": true
+    },
+    {{/director}}
+  ],
+  "footer": {
+    "text": "Powered by Letterboxd"
+  },
+  "timestamp": "{{timestamp}}"
+}

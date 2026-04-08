@@ -1,0 +1,12 @@
+{
+  "title": "{{{title}}}{{#year}} ({{{year}}}){{/year}} Ratings",
+  "url": "{{{url}}}",
+  "color": 16776960,
+  "thumbnail": {
+    "url": "{{#posterUrl}}{{{posterUrl}}}{{/posterUrl}}"
+  },
+  "description": "{{#noRatings}}No ratings found for this movie on this page.{{/noRatings}}{{^noRatings}}{{#ratingsList}}**{{{username}}}**: {{{rating}}}/10{{{like}}}\n{{/ratingsList}}{{/noRatings}}",
+  "footer": {
+    "text": "Avg: {{{averageRatingWithStar}}} from {{{totalRatings}}} members | Page {{{page}}}"
+  }
+}

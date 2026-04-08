@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.24.xsd">
+
+    <changeSet id="001-create-movies-table" author="discord-bot">
+        <!-- Enable pg_trgm extension for fuzzy search -->
+        <sql>
+            CREATE EXTENSION IF NOT EXISTS pg_trgm;
+        </sql>
+        
+        <!-- Create movies table -->
+        <createTable tableName="movies">
+            <column name="id" type="BIGSERIAL" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(500)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="letterboxd_url" type="VARCHAR(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="VARCHAR(10)"/>
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        
+        <!-- Create index on title for fuzzy search -->
+        <sql>
+            CREATE INDEX idx_movies_title_trgm ON movies USING gin (title gin_trgm_ops);
+        </sql>
+        
+        <!-- Create unique index on letterboxd_url -->
+        <createIndex tableName="movies" indexName="idx_movies_letterboxd_url" unique="true">
+            <column name="letterboxd_url"/>
+        </createIndex>
+        
+        <rollback>
+            <dropTable tableName="movies"/>
+            <sql>DROP EXTENSION IF EXISTS pg_trgm;</sql>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

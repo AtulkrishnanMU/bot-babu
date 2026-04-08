@@ -1,0 +1,37 @@
+{
+  "title": "{{{title}}}",
+  "color": 65535,
+  "thumbnail": {
+    "url": "{{#posterUrl}}{{posterUrl}}{{/posterUrl}}"
+  },
+  "fields": [
+    {{#releaseYear}}
+    {
+      "name": "📅 Release Year",
+      "value": "{{{releaseYear}}}",
+      "inline": true
+    },
+    {{/releaseYear}}
+    {{#rating}}
+    {
+      "name": "⭐ Rating",
+      "value": "{{{rating}}}",
+      "inline": true
+    },
+    {{/rating}}
+    {
+      "name": "🆔 TMDB ID",
+      "value": "{{{movieId}}}",
+      "inline": true
+    }{{#overview}},
+    {
+      "name": "📝 Overview",
+      "value": "{{{overview}}}",
+      "inline": false
+    }{{/overview}}
+  ],
+  "footer": {
+    "text": "Powered by TMDB"
+  },
+  "timestamp": "{{timestamp}}"
+}

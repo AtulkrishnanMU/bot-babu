@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: discord-bot
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/changelog.sql
+  cache:
+    caffeine:
+      spec: maximumSize=500,expireAfterWrite=24h
+
+tmdb:
+  api:
+    key: ${TMDB_API}
+    base-url: https://api.themoviedb.org
+    image-base-url: https://image.tmdb.org/t/p/w500
+
+discord:
+  token: ${DISCORD_TOKEN}
+  guild-id: 1467777909132497074
+  activity: "Searching movies 🎬"
+
+logging:
+  level:
+    com.example.discordbot: INFO
+    net.dv8tion.jda: WARN
+
+serpapi:
+  key: ${SERP_API_KEY}
